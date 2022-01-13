@@ -1,0 +1,51 @@
+{
+  "name": "Employee",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updateAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "affectation",
+      "otherEntityRelationshipName": "employee",
+      "relationshipName": "affectation"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "reception",
+      "otherEntityRelationshipName": "employee",
+      "relationshipName": "reception"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "division",
+      "otherEntityRelationshipName": "employee",
+      "relationshipName": "division"
+    }
+  ],
+  "entityTableName": "employee",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220111140636"
+}

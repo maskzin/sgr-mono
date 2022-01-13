@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Reception.
+    -->
+    <changeSet id="20220111140639-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="reception_id"
+                                 baseTableName="rel_reception__article"
+                                 constraintName="fk_rel_reception__article__reception_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reception"/>
+
+        <addForeignKeyConstraint baseColumnNames="article_id"
+                                 baseTableName="rel_reception__article"
+                                 constraintName="fk_rel_reception__article__article_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="article"/>
+
+        <addForeignKeyConstraint baseColumnNames="employee_id"
+                                 baseTableName="reception"
+                                 constraintName="fk_reception__employee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employee"/>
+
+        <addForeignKeyConstraint baseColumnNames="fournisseur_id"
+                                 baseTableName="reception"
+                                 constraintName="fk_reception__fournisseur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fournisseur"/>
+    </changeSet>
+</databaseChangeLog>

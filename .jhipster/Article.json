@@ -1,0 +1,53 @@
+{
+  "name": "Article",
+  "fields": [
+    {
+      "fieldName": "libelleArticle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "stock",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updateAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "affectation",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "affectation",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "categorie",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "categorie"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "reception",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "reception",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "article",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220111140634"
+}

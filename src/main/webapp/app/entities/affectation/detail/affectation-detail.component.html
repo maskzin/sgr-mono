@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="affectation">
+      <h2 data-cy="affectationDetailsHeading"><span jhiTranslate="sgrApp.affectation.detail.title">Affectation</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ affectation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.affectation.dateAffectation">Date Affectation</span></dt>
+        <dd>
+          <span>{{ affectation.dateAffectation | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.affectation.quantite">Quantite</span></dt>
+        <dd>
+          <span>{{ affectation.quantite }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.affectation.nom">Nom</span></dt>
+        <dd>
+          <span>{{ affectation.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.affectation.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ affectation.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.affectation.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ affectation.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.affectation.updateAt">Update At</span></dt>
+        <dd>
+          <span>{{ affectation.updateAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.affectation.article">Article</span></dt>
+        <dd>
+          <div *ngIf="affectation.article">
+            <a [routerLink]="['/article', affectation.article?.id, 'view']">{{ affectation.article?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.affectation.employee">Employee</span></dt>
+        <dd>
+          <div *ngIf="affectation.employee">
+            <a [routerLink]="['/employee', affectation.employee?.id, 'view']">{{ affectation.employee?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/affectation', affectation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

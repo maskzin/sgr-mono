@@ -1,0 +1,213 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-reception-heading" data-cy="ReceptionCreateUpdateHeading" jhiTranslate="sgrApp.reception.home.createOrEditLabel">
+        Create or edit a Reception
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.numContrat" for="field_numContrat">Num Contrat</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numContrat"
+            id="field_numContrat"
+            data-cy="numContrat"
+            formControlName="numContrat"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.caracteristique" for="field_caracteristique"
+            >Caracteristique</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="caracteristique"
+            id="field_caracteristique"
+            data-cy="caracteristique"
+            formControlName="caracteristique"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.quantiteArticle" for="field_quantiteArticle"
+            >Quantite Article</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="quantiteArticle"
+            id="field_quantiteArticle"
+            data-cy="quantiteArticle"
+            formControlName="quantiteArticle"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.numeroSerie" for="field_numeroSerie">Numero Serie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numeroSerie"
+            id="field_numeroSerie"
+            data-cy="numeroSerie"
+            formControlName="numeroSerie"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.status" for="field_status">Status</label>
+          <input type="number" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.dateContrat" for="field_dateContrat">Date Contrat</label>
+          <div class="input-group">
+            <input
+              id="field_dateContrat"
+              data-cy="dateContrat"
+              type="text"
+              class="form-control"
+              name="dateContrat"
+              ngbDatepicker
+              #dateContratDp="ngbDatepicker"
+              formControlName="dateContrat"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateContratDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.dateReception" for="field_dateReception">Date Reception</label>
+          <div class="input-group">
+            <input
+              id="field_dateReception"
+              data-cy="dateReception"
+              type="text"
+              class="form-control"
+              name="dateReception"
+              ngbDatepicker
+              #dateReceptionDp="ngbDatepicker"
+              formControlName="dateReception"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateReceptionDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.createdAt" for="field_createdAt">Created At</label>
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.updateAt" for="field_updateAt">Update At</label>
+          <div class="input-group">
+            <input
+              id="field_updateAt"
+              data-cy="updateAt"
+              type="text"
+              class="form-control"
+              name="updateAt"
+              ngbDatepicker
+              #updateAtDp="ngbDatepicker"
+              formControlName="updateAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updateAtDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="sgrApp.reception.article" for="field_articles">Article</label>
+          <select class="form-control" id="field_articles" data-cy="article" multiple name="articles" formControlName="articles">
+            <option
+              [ngValue]="getSelectedArticle(articleOption, editForm.get('articles')!.value)"
+              *ngFor="let articleOption of articlesSharedCollection; trackBy: trackArticleById"
+            >
+              {{ articleOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.employee" for="field_employee">Employee</label>
+          <select class="form-control" id="field_employee" data-cy="employee" name="employee" formControlName="employee">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="employeeOption.id === editForm.get('employee')!.value?.id ? editForm.get('employee')!.value : employeeOption"
+              *ngFor="let employeeOption of employeesSharedCollection; trackBy: trackEmployeeById"
+            >
+              {{ employeeOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sgrApp.reception.fournisseur" for="field_fournisseur">Fournisseur</label>
+          <select class="form-control" id="field_fournisseur" data-cy="fournisseur" name="fournisseur" formControlName="fournisseur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                fournisseurOption.id === editForm.get('fournisseur')!.value?.id ? editForm.get('fournisseur')!.value : fournisseurOption
+              "
+              *ngFor="let fournisseurOption of fournisseursSharedCollection; trackBy: trackFournisseurById"
+            >
+              {{ fournisseurOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

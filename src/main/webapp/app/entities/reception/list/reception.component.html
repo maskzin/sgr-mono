@@ -1,0 +1,113 @@
+<div>
+  <h2 id="page-heading" data-cy="ReceptionHeading">
+    <span jhiTranslate="sgrApp.reception.home.title">Receptions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="sgrApp.reception.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-reception"
+        [routerLink]="['/reception/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sgrApp.reception.home.createLabel"> Create a new Reception </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="receptions?.length === 0">
+    <span jhiTranslate="sgrApp.reception.home.notFound">No receptions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="receptions && receptions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.numContrat">Num Contrat</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.caracteristique">Caracteristique</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.quantiteArticle">Quantite Article</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.numeroSerie">Numero Serie</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.status">Status</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.dateContrat">Date Contrat</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.dateReception">Date Reception</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.createdAt">Created At</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.updateAt">Update At</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.article">Article</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.employee">Employee</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.reception.fournisseur">Fournisseur</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reception of receptions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/reception', reception.id, 'view']">{{ reception.id }}</a>
+          </td>
+          <td>{{ reception.numContrat }}</td>
+          <td>{{ reception.caracteristique }}</td>
+          <td>{{ reception.quantiteArticle }}</td>
+          <td>{{ reception.numeroSerie }}</td>
+          <td>{{ reception.status }}</td>
+          <td>{{ reception.dateContrat | formatMediumDate }}</td>
+          <td>{{ reception.dateReception | formatMediumDate }}</td>
+          <td>{{ reception.createdAt | formatMediumDate }}</td>
+          <td>{{ reception.updateAt | formatMediumDate }}</td>
+          <td>
+            <span *ngFor="let article of reception.articles; let last = last">
+              <a class="form-control-static" [routerLink]="['/article', article.id, 'view']">{{ article.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td>
+            <div *ngIf="reception.employee">
+              <a [routerLink]="['/employee', reception.employee?.id, 'view']">{{ reception.employee?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="reception.fournisseur">
+              <a [routerLink]="['/fournisseur', reception.fournisseur?.id, 'view']">{{ reception.fournisseur?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/reception', reception.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/reception', reception.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(reception)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

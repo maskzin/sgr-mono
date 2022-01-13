@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="detailReception">
+      <h2 data-cy="detailReceptionDetailsHeading"><span jhiTranslate="sgrApp.detailReception.detail.title">Detail Reception</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ detailReception.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.detailReception.caracteristique">Caracteristique</span></dt>
+        <dd>
+          <span>{{ detailReception.caracteristique }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.detailReception.quantiteArticle">Quantite Article</span></dt>
+        <dd>
+          <span>{{ detailReception.quantiteArticle }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.detailReception.numeroSerie">Numero Serie</span></dt>
+        <dd>
+          <span>{{ detailReception.numeroSerie }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.detailReception.status">Status</span></dt>
+        <dd>
+          <span>{{ detailReception.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.detailReception.reception">Reception</span></dt>
+        <dd>
+          <div *ngIf="detailReception.reception">
+            <a [routerLink]="['/reception', detailReception.reception?.id, 'view']">{{ detailReception.reception?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/detail-reception', detailReception.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

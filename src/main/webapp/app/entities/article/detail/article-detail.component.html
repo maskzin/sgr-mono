@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="article">
+      <h2 data-cy="articleDetailsHeading"><span jhiTranslate="sgrApp.article.detail.title">Article</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ article.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.article.libelleArticle">Libelle Article</span></dt>
+        <dd>
+          <span>{{ article.libelleArticle }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.article.stock">Stock</span></dt>
+        <dd>
+          <span>{{ article.stock }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.article.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ article.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.article.updateAt">Update At</span></dt>
+        <dd>
+          <span>{{ article.updateAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.article.categorie">Categorie</span></dt>
+        <dd>
+          <div *ngIf="article.categorie">
+            <a [routerLink]="['/categorie', article.categorie?.id, 'view']">{{ article.categorie?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/article', article.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

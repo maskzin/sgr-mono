@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fournisseur">
+      <h2 data-cy="fournisseurDetailsHeading"><span jhiTranslate="sgrApp.fournisseur.detail.title">Fournisseur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fournisseur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.fournisseur.nom">Nom</span></dt>
+        <dd>
+          <span>{{ fournisseur.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.fournisseur.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ fournisseur.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.fournisseur.telehone">Telehone</span></dt>
+        <dd>
+          <span>{{ fournisseur.telehone }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.fournisseur.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ fournisseur.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.fournisseur.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ fournisseur.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.fournisseur.updateAt">Update At</span></dt>
+        <dd>
+          <span>{{ fournisseur.updateAt | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/fournisseur', fournisseur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

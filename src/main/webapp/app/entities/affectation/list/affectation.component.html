@@ -1,0 +1,100 @@
+<div>
+  <h2 id="page-heading" data-cy="AffectationHeading">
+    <span jhiTranslate="sgrApp.affectation.home.title">Affectations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="sgrApp.affectation.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-affectation"
+        [routerLink]="['/affectation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sgrApp.affectation.home.createLabel"> Create a new Affectation </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="affectations?.length === 0">
+    <span jhiTranslate="sgrApp.affectation.home.notFound">No affectations found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="affectations && affectations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.affectation.dateAffectation">Date Affectation</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.affectation.quantite">Quantite</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.affectation.nom">Nom</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.affectation.prenom">Prenom</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.affectation.createdAt">Created At</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.affectation.updateAt">Update At</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.affectation.article">Article</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.affectation.employee">Employee</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let affectation of affectations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/affectation', affectation.id, 'view']">{{ affectation.id }}</a>
+          </td>
+          <td>{{ affectation.dateAffectation | formatMediumDate }}</td>
+          <td>{{ affectation.quantite }}</td>
+          <td>{{ affectation.nom }}</td>
+          <td>{{ affectation.prenom }}</td>
+          <td>{{ affectation.createdAt | formatMediumDate }}</td>
+          <td>{{ affectation.updateAt | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="affectation.article">
+              <a [routerLink]="['/article', affectation.article?.id, 'view']">{{ affectation.article?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="affectation.employee">
+              <a [routerLink]="['/employee', affectation.employee?.id, 'view']">{{ affectation.employee?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/affectation', affectation.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/affectation', affectation.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(affectation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+{
+  "name": "Reception",
+  "fields": [
+    {
+      "fieldName": "numContrat",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "caracteristique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantiteArticle",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "numeroSerie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dateContrat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateReception",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updateAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "detailReception",
+      "otherEntityRelationshipName": "reception",
+      "relationshipName": "detailReception"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "article",
+      "otherEntityRelationshipName": "reception",
+      "relationshipName": "article",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "employee",
+      "otherEntityRelationshipName": "reception",
+      "relationshipName": "employee"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "fournisseur",
+      "otherEntityRelationshipName": "reception",
+      "relationshipName": "fournisseur"
+    }
+  ],
+  "entityTableName": "reception",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220111140639"
+}

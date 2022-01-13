@@ -1,0 +1,28 @@
+{
+  "sgrApp": {
+    "detailReception": {
+      "home": {
+        "title": "DetailReceptions",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Detail Reception",
+        "createOrEditLabel": "Créer ou éditer un Detail Reception",
+        "notFound": "Aucun Detail Reception trouvé"
+      },
+      "created": "Un nouveau Detail Reception a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Detail Reception avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Detail Reception avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Detail Reception {{ id }} ?"
+      },
+      "detail": {
+        "title": "Detail Reception"
+      },
+      "id": "ID",
+      "caracteristique": "Caracteristique",
+      "quantiteArticle": "Quantite Article",
+      "numeroSerie": "Numero Serie",
+      "status": "Status",
+      "reception": "Reception"
+    }
+  }
+}

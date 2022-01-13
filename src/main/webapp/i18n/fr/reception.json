@@ -1,0 +1,36 @@
+{
+  "sgrApp": {
+    "reception": {
+      "home": {
+        "title": "Receptions",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Reception",
+        "createOrEditLabel": "Créer ou éditer un Reception",
+        "notFound": "Aucun Reception trouvé"
+      },
+      "created": "Un nouveau Reception a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Reception avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Reception avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Reception {{ id }} ?"
+      },
+      "detail": {
+        "title": "Reception"
+      },
+      "id": "ID",
+      "numContrat": "Num Contrat",
+      "caracteristique": "Caracteristique",
+      "quantiteArticle": "Quantite Article",
+      "numeroSerie": "Numero Serie",
+      "status": "Status",
+      "dateContrat": "Date Contrat",
+      "dateReception": "Date Reception",
+      "createdAt": "Created At",
+      "updateAt": "Update At",
+      "detailReception": "Detail Reception",
+      "article": "Article",
+      "employee": "Employee",
+      "fournisseur": "Fournisseur"
+    }
+  }
+}

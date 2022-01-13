@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="reception">
+      <h2 data-cy="receptionDetailsHeading"><span jhiTranslate="sgrApp.reception.detail.title">Reception</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ reception.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.numContrat">Num Contrat</span></dt>
+        <dd>
+          <span>{{ reception.numContrat }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.caracteristique">Caracteristique</span></dt>
+        <dd>
+          <span>{{ reception.caracteristique }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.quantiteArticle">Quantite Article</span></dt>
+        <dd>
+          <span>{{ reception.quantiteArticle }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.numeroSerie">Numero Serie</span></dt>
+        <dd>
+          <span>{{ reception.numeroSerie }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.status">Status</span></dt>
+        <dd>
+          <span>{{ reception.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.dateContrat">Date Contrat</span></dt>
+        <dd>
+          <span>{{ reception.dateContrat | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.dateReception">Date Reception</span></dt>
+        <dd>
+          <span>{{ reception.dateReception | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ reception.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.updateAt">Update At</span></dt>
+        <dd>
+          <span>{{ reception.updateAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.article">Article</span></dt>
+        <dd>
+          <span *ngFor="let article of reception.articles; let last = last">
+            <a [routerLink]="['/article', article?.id, 'view']">{{ article.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.employee">Employee</span></dt>
+        <dd>
+          <div *ngIf="reception.employee">
+            <a [routerLink]="['/employee', reception.employee?.id, 'view']">{{ reception.employee?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sgrApp.reception.fournisseur">Fournisseur</span></dt>
+        <dd>
+          <div *ngIf="reception.fournisseur">
+            <a [routerLink]="['/fournisseur', reception.fournisseur?.id, 'view']">{{ reception.fournisseur?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/reception', reception.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

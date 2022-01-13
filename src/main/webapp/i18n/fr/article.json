@@ -1,0 +1,30 @@
+{
+  "sgrApp": {
+    "article": {
+      "home": {
+        "title": "Articles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Article",
+        "createOrEditLabel": "Créer ou éditer un Article",
+        "notFound": "Aucun Article trouvé"
+      },
+      "created": "Un nouveau Article a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Article avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Article avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Article {{ id }} ?"
+      },
+      "detail": {
+        "title": "Article"
+      },
+      "id": "ID",
+      "libelleArticle": "Libelle Article",
+      "stock": "Stock",
+      "createdAt": "Created At",
+      "updateAt": "Update At",
+      "affectation": "Affectation",
+      "categorie": "Categorie",
+      "reception": "Reception"
+    }
+  }
+}

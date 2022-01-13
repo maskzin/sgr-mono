@@ -1,0 +1,39 @@
+{
+  "name": "DetailReception",
+  "fields": [
+    {
+      "fieldName": "caracteristique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantiteArticle",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "numeroSerie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "reception",
+      "otherEntityRelationshipName": "detailReception",
+      "relationshipName": "reception"
+    }
+  ],
+  "entityTableName": "detail_reception",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220111140641"
+}

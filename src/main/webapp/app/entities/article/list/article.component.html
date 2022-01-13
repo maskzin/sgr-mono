@@ -1,0 +1,90 @@
+<div>
+  <h2 id="page-heading" data-cy="ArticleHeading">
+    <span jhiTranslate="sgrApp.article.home.title">Articles</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="sgrApp.article.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-article"
+        [routerLink]="['/article/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sgrApp.article.home.createLabel"> Create a new Article </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="articles?.length === 0">
+    <span jhiTranslate="sgrApp.article.home.notFound">No articles found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="articles && articles.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.article.libelleArticle">Libelle Article</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.article.stock">Stock</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.article.createdAt">Created At</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.article.updateAt">Update At</span></th>
+          <th scope="col"><span jhiTranslate="sgrApp.article.categorie">Categorie</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of articles; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/article', article.id, 'view']">{{ article.id }}</a>
+          </td>
+          <td>{{ article.libelleArticle }}</td>
+          <td>{{ article.stock }}</td>
+          <td>{{ article.createdAt | formatMediumDate }}</td>
+          <td>{{ article.updateAt | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="article.categorie">
+              <a [routerLink]="['/categorie', article.categorie?.id, 'view']">{{ article.categorie?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/article', article.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/article', article.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(article)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
